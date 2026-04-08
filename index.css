@@ -1,0 +1,409 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL THEME SYSTEM — Single source of truth via [data-theme]
+   All components read from these variables — never hardcoded colors.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme="light"] {
+  /* Surfaces — warm white with subtle depth layers */
+  --bg-primary: 0 0% 100%;
+  /* pure white page bg */
+  --bg-secondary: 220 14% 96%;
+  /* slightly cooler than gray-50 — less yellow */
+  --bg-tertiary: 220 13% 91%;
+  /* hover surfaces */
+  --bg-card: 0 0% 100%;
+  /* card face */
+  --bg-elevated: 0 0% 99.5%;
+  /* slightly off-white for inner sections */
+
+  /* Text — true neutral, not warm-gray */
+  --text-primary: 224 71% 4%;
+  /* #050C1A — richer than near-black */
+  --text-secondary: 220 9% 46%;
+  /* cooler muted */
+  --text-muted: 220 9% 63%;
+  --text-disabled: 220 9% 78%;
+
+  /* Borders — crisp, cool */
+  --border-color: 220 13% 91%;
+  /* primary border */
+  --border-strong: 220 13% 83%;
+  /* emphasis border */
+  --border-subtle: 220 14% 96%;
+  /* hairline */
+
+  /* Brand accent */
+  --accent-blue: 217 91% 57%;
+  /* #2563EB — precise blue-600 */
+  --accent-blue-light: 213 100% 96%;
+  /* blue-50 tint */
+
+  /* Shadcn primitives */
+  --background: 0 0% 100%;
+  --foreground: 224 71% 4%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71% 4%;
+  --primary: 217 91% 57%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 224 71% 4%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: 220 14% 96%;
+  --accent-foreground: 224 71% 4%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 217 91% 57%;
+  --radius: 0.75rem;
+  /* 12px — more modern than 8px */
+}
+
+[data-theme="dark"],
+.dark {
+  /* Surfaces — deep navy-gray (not pure black) — like Vercel/Linear dark mode */
+  --bg-primary: 222 24% 7%;
+  /* #0E1117 — deep navy page bg, not pure black */
+  --bg-secondary: 222 20% 10%;
+  /* #141820 — card bg, slightly lighter */
+  --bg-tertiary: 222 18% 14%;
+  /* #1A2030 — hover/active states */
+  --bg-card: 222 20% 10%;
+  /* matches secondary — clean card surface */
+  --bg-elevated: 222 18% 13%;
+  /* slightly elevated inner sections */
+
+  /* Text — true optical white with hierarchy */
+  --text-primary: 210 17% 95%;
+  /* #EEF1F5 — off-white, easier on eyes than pure white */
+  --text-secondary: 216 12% 64%;
+  /* #9AA3B0 — muted but legible */
+  --text-muted: 216 10% 46%;
+  /* #6C7580 — subtle labels */
+  --text-disabled: 216 8% 32%;
+  /* very muted */
+
+  /* Borders — visible but not harsh */
+  --border-color: 222 16% 18%;
+  /* #232B3A — primary border */
+  --border-strong: 222 14% 24%;
+  /* #2D3847 — emphasis */
+  --border-subtle: 222 18% 12%;
+  /* #16202E — hairline */
+
+  /* Shadcn primitives (dark) */
+  --background: 222 24% 7%;
+  --foreground: 210 17% 95%;
+  --card: 222 20% 10%;
+  --card-foreground: 210 17% 95%;
+  --popover: 222 20% 12%;
+  --popover-foreground: 210 17% 95%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 24% 7%;
+  --secondary: 222 18% 14%;
+  --secondary-foreground: 210 17% 95%;
+  --muted: 222 18% 14%;
+  --muted-foreground: 216 12% 64%;
+  --accent: 222 18% 16%;
+  --accent-foreground: 210 17% 95%;
+  --destructive: 0 62.8% 45%;
+  --destructive-foreground: 210 17% 95%;
+  --border: 222 16% 18%;
+  --input: 222 18% 14%;
+  --ring: 217 91% 60%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   UTILITY CLASSES — map CSS vars to usable Tailwind-like helpers
+   ═══════════════════════════════════════════════════════════════════ */
+@layer utilities {
+  .bg-theme-primary {
+    background-color: hsl(var(--bg-primary));
+  }
+
+  .bg-theme-secondary {
+    background-color: hsl(var(--bg-secondary));
+  }
+
+  .bg-theme-tertiary {
+    background-color: hsl(var(--bg-tertiary));
+  }
+
+  .bg-theme-card {
+    background-color: hsl(var(--bg-card));
+  }
+
+  .bg-theme-elevated {
+    background-color: hsl(var(--bg-elevated));
+  }
+
+  .text-theme-primary {
+    color: hsl(var(--text-primary));
+  }
+
+  .text-theme-secondary {
+    color: hsl(var(--text-secondary));
+  }
+
+  .text-theme-muted {
+    color: hsl(var(--text-muted));
+  }
+
+  .border-theme {
+    border-color: hsl(var(--border-color));
+  }
+
+  .border-theme-strong {
+    border-color: hsl(var(--border-strong));
+  }
+
+  .border-theme-subtle {
+    border-color: hsl(var(--border-subtle));
+  }
+
+  /* Scrollbar styling for modals */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border-color));
+    border-radius: 9999px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════ */
+@layer base {
+  * {
+    @apply border-border;
+    transition-property: background-color, border-color, color;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html[data-theme="dark"],
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: hsl(var(--bg-primary));
+    color: hsl(var(--text-primary));
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    /* Inter's clean numeric variants */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Heading font — Plus Jakarta Sans for key headings */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+  }
+
+  /* Make all bare white panels respect the theme */
+  [data-theme="dark"] .bg-white,
+  .dark .bg-white {
+    background-color: hsl(var(--bg-card)) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-50,
+  .dark .bg-gray-50 {
+    background-color: hsl(var(--bg-secondary)) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-100,
+  .dark .bg-gray-100 {
+    background-color: hsl(var(--bg-tertiary)) !important;
+  }
+
+  /* Border color overrides */
+  [data-theme="dark"] .border-gray-100,
+  .dark .border-gray-100 {
+    border-color: hsl(var(--border-subtle)) !important;
+  }
+
+  [data-theme="dark"] .border-gray-200,
+  .dark .border-gray-200 {
+    border-color: hsl(var(--border-color)) !important;
+  }
+
+  /* Text overrides */
+  [data-theme="dark"] .text-gray-900,
+  .dark .text-gray-900 {
+    color: hsl(var(--text-primary)) !important;
+  }
+
+  [data-theme="dark"] .text-gray-800,
+  .dark .text-gray-800 {
+    color: hsl(210 30% 90%) !important;
+  }
+
+  [data-theme="dark"] .text-gray-700,
+  .dark .text-gray-700 {
+    color: hsl(215 20% 75%) !important;
+  }
+
+  [data-theme="dark"] .text-gray-600,
+  .dark .text-gray-600 {
+    color: hsl(215 20% 65%) !important;
+  }
+
+  [data-theme="dark"] .text-gray-500,
+  .dark .text-gray-500 {
+    color: hsl(215 20% 55%) !important;
+  }
+
+  [data-theme="dark"] .text-gray-400,
+  .dark .text-gray-400 {
+    color: hsl(215 15% 45%) !important;
+  }
+
+  /* Shadow adjustment for dark mode */
+  [data-theme="dark"] .shadow-sm,
+  .dark .shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  [data-theme="dark"] .shadow-xl,
+  .dark .shadow-xl,
+  [data-theme="dark"] .shadow-2xl,
+  .dark .shadow-2xl {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Dialog / Modal overrides — CRITICAL for engine modal */
+  [data-theme="dark"] [role="dialog"]>div,
+  .dark [role="dialog"]>div {
+    background-color: hsl(var(--bg-card)) !important;
+    border-color: hsl(var(--border-color)) !important;
+  }
+
+  /* Hover state adjustments */
+  [data-theme="dark"] .hover\:bg-gray-50:hover,
+  .dark .hover\:bg-gray-50:hover {
+    background-color: hsl(var(--bg-tertiary)) !important;
+  }
+
+  [data-theme="dark"] .hover\:bg-gray-100:hover,
+  .dark .hover\:bg-gray-100:hover {
+    background-color: hsl(217 32% 20%) !important;
+  }
+
+  /* Input / textarea backgrounds */
+  [data-theme="dark"] input,
+  [data-theme="dark"] textarea,
+  [data-theme="dark"] select,
+  .dark input,
+  .dark textarea,
+  .dark select {
+    background-color: hsl(var(--bg-tertiary)) !important;
+    border-color: hsl(var(--border-color)) !important;
+    color: hsl(var(--text-primary)) !important;
+  }
+
+  [data-theme="dark"] input::placeholder,
+  [data-theme="dark"] textarea::placeholder,
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: hsl(var(--text-muted)) !important;
+  }
+
+  /* Scrollbar for dark */
+  [data-theme="dark"] ::-webkit-scrollbar-thumb,
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border-strong));
+  }
+
+  /* ── Card depth: world-class SaaS uses inner highlight on cards ── */
+  /* In light mode: barely-visible inner white ring gives depth without shadow spam */
+  .card-surface {
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.7), 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] .card-surface,
+  .dark .card-surface {
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.04), 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Dark mode: bg-white maps to deep navy card, not pure black ── */
+  [data-theme="dark"] .bg-white,
+  .dark .bg-white {
+    background-color: hsl(222 20% 10%) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-50,
+  .dark .bg-gray-50 {
+    background-color: hsl(222 20% 8.5%) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-100,
+  .dark .bg-gray-100 {
+    background-color: hsl(222 18% 14%) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-900,
+  .dark .bg-gray-900 {
+    background-color: hsl(222 20% 10%) !important;
+  }
+
+  [data-theme="dark"] .bg-gray-950,
+  .dark .bg-gray-950 {
+    background-color: hsl(222 24% 7%) !important;
+  }
+
+  /* ── Smooth html scroll ── */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* ── Selection color ── */
+  ::selection {
+    background-color: hsl(217 91% 57% / 0.2);
+    color: hsl(217 91% 30%);
+  }
+
+  [data-theme="dark"] ::selection,
+  .dark ::selection {
+    background-color: hsl(217 91% 60% / 0.25);
+    color: hsl(210 17% 95%);
+  }
+
+  /* ── Focus ring: consistent across the app ── */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
