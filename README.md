@@ -2,20 +2,20 @@
 
 Authority Studio AI is a system designed to evaluate and improve content performance before publishing.
 
-This repository contains a simplified frontend implementation showcasing UI structure, layout, and component patterns.
+This repository contains a curated frontend snapshot showcasing UI structure, layout, and reusable component patterns.
 
-## What this repo includes
+## What this includes
 
 - React-based UI components
 - Tailwind styling system
-- SaaS landing + pricing structure
+- Landing page + pricing page structure
 - Component-driven architecture
 
 ## What is NOT included
 
 - Scoring engine logic
+- Backend services (Supabase, APIs)
 - Prompt engineering system
-- Backend (Supabase, APIs)
 - Proprietary algorithms
 
 ## Live product
@@ -30,7 +30,4 @@ https://authoritystudioai.com
 
 ## Purpose
 
-This repository demonstrates frontend system design and UI architecture — not the full production system.
-
-
-
+This repository demonstrates frontend architecture and UI design — not the full production system.
